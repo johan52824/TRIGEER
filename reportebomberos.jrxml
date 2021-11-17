@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportebomberos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="10976378-ba07-45fc-be18-6dc5be9af484">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="114"/>
+	<queryString>
+		<![CDATA[SELECT COMUNIDAD.NOMBRE_COMUNIDAD AS COMUNIDAD,
+COUNT(SERVICIO.ID_SERVICIO)
+FROM SERVICIO
+INNER JOIN COMUNIDAD ON SERVICIO.ID_COMUNIDAD=COMUNIDAD.ID_COMUNIDAD
+GROUP BY COMUNIDAD
+]]>
+	</queryString>
+	<field name="comunidad" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="71" y="14" width="293" height="43" uuid="330e7ae2-17c7-4067-a7cf-accc06427269"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[BOMBEROS DE MANTA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="397" y="0" width="133" height="90" uuid="1d29e2aa-0114-4f2d-ac50-538398096962"/>
+				<imageExpression><![CDATA["C:\\Users\\Mario\\Downloads\\índice.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="37" y="72" width="207" height="32" uuid="1f2e2e4c-3344-4996-8ece-31af6e463327"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Reporte de casos atendidos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="15" width="100" height="20" uuid="a96b0ebb-8607-4047-af5e-7dc41d2fa4e6"/>
+				<text><![CDATA[comunidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="15" width="100" height="20" uuid="9c31ab86-e04b-4854-8bfc-93f4f55c48b2"/>
+				<text><![CDATA[Total de casos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="37" y="21" width="100" height="20" uuid="14a53ac7-a4aa-44e7-b4e0-5ccdb14b1199"/>
+				<textFieldExpression><![CDATA[$F{comunidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="21" width="100" height="20" uuid="6927bba2-adf2-42aa-9522-152b3ccc810a"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="269" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="37" y="0" width="455" height="246" uuid="6f83b464-8cb7-43a8-8c86-09f34614b770"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{comunidad}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
